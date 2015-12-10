@@ -1615,5 +1615,269 @@ define({ "api": [
     },
     "filename": "app/controllers/course.js",
     "groupTitle": "Courses"
+  },
+  {
+    "type": "delete",
+    "url": "/tags",
+    "title": "Delete a tag",
+    "name": "DeleteTag",
+    "group": "Tags",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and teachers."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The tag name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The created tag.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Tag already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/tag.js",
+    "groupTitle": "Tags"
+  },
+  {
+    "type": "get",
+    "url": "/tags/:name",
+    "title": "Get one tag",
+    "name": "GetTag",
+    "group": "Tags",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/tags/XYZ",
+        "type": "curl"
+      }
+    ],
+    "description": "<p>Not very useful route because tag is just a name, but still exists.</p> ",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String[]</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The tag name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The tag.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Tag not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/tag.js",
+    "groupTitle": "Tags"
+  },
+  {
+    "type": "get",
+    "url": "/tags/:name",
+    "title": "Get all tags",
+    "name": "GetTags",
+    "group": "Tags",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/tags",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of tags.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/tag.js",
+    "groupTitle": "Tags"
+  },
+  {
+    "type": "post",
+    "url": "/tags",
+    "title": "Post a tag",
+    "name": "PostTag",
+    "group": "Tags",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and teachers."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The tag name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The created tag.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Tag already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/tag.js",
+    "groupTitle": "Tags"
   }
 ] });

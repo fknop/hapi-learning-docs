@@ -18,7 +18,11 @@ define({
     "DeleteCourse",
     "DeleteCourseTags",
     "DeleteCourseTeachers",
-    "DeleteCourseDocuments"
+    "DeleteCourseDocuments",
+    "GetTags",
+    "GetTag",
+    "PostTag",
+    "DeleteTag"
   ],
   "name": "hapi-learning",
   "version": "1.0.0",
@@ -27,7 +31,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-10T21:39:09.834Z",
+    "time": "2015-12-10T21:48:14.233Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

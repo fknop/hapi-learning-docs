@@ -1,6 +1,7 @@
 define({
   "title": "hapi-learning API documentation",
   "order": [
+    "Login",
     "GetCourses",
     "GetCourse",
     "GetCourseHomepage",
@@ -31,7 +32,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-10T21:48:14.233Z",
+    "time": "2015-12-11T11:14:57.036Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

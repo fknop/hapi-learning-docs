@@ -1,6 +1,156 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/login",
+    "title": "Authentificate",
+    "name": "Login",
+    "group": "Auth",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST http://localhost/login -H \"Content-Type: application/json\" \\\n        -d '{ \"username\": \"user\", \"password\": \"password\" }'",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "description": "<p>You have to provide the username OR the email.</p> ",
+    "parameter": {
+      "fields": {
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "username",
+            "description": "<p>The username.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "email",
+            "description": "<p>The email.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The password.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The private token.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Bad credentials.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "/logout",
+    "title": "Logout",
+    "name": "Logout",
+    "group": "Auth",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST http://localhost/logout -H \"Authorization: private_token\"",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
     "url": "/courses/:id/tags",
     "title": "Add tags to course",
     "name": "AddTags",
@@ -69,6 +219,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -153,6 +317,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -248,6 +426,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           },
@@ -323,6 +515,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -410,6 +616,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           }
@@ -487,6 +707,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -574,6 +808,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           }
@@ -650,6 +898,13 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           },
           {
             "group": "Error 4xx",
@@ -754,6 +1009,13 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           }
@@ -835,6 +1097,13 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           }
@@ -911,6 +1180,13 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           },
           {
             "group": "Error 4xx",
@@ -1010,6 +1286,13 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           },
           {
             "group": "Error 4xx",
@@ -1127,6 +1410,13 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           }
         ]
       }
@@ -1187,7 +1477,7 @@ define({ "api": [
           {
             "group": "Success 200",
             "optional": false,
-            "field": "200",
+            "field": "204",
             "description": "<p>No content.</p> "
           }
         ]
@@ -1202,6 +1492,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -1323,6 +1627,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "409",
             "description": "<p>Course already exists.</p> "
           },
@@ -1421,6 +1739,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           }
@@ -1498,6 +1830,20 @@ define({ "api": [
             "optional": false,
             "field": "400",
             "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
           },
           {
             "group": "Error 4xx",
@@ -1600,6 +1946,20 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Course not found.</p> "
           },
@@ -1670,6 +2030,20 @@ define({ "api": [
     "error": {
       "fields": {
         "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
           {
             "group": "Error 4xx",
             "type": "<p>json</p> ",
@@ -1756,6 +2130,13 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "404",
             "description": "<p>Tag not found.</p> "
           }
@@ -1806,6 +2187,19 @@ define({ "api": [
             "optional": false,
             "field": "200",
             "description": "<p>An array of tags.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           }
         ]
       }
@@ -1867,6 +2261,20 @@ define({ "api": [
     "error": {
       "fields": {
         "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
           {
             "group": "Error 4xx",
             "type": "<p>json</p> ",

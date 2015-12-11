@@ -1,5 +1,8 @@
 define({
   "title": "hapi-learning API documentation",
+  "template": {
+    "forceLanguage": "en"
+  },
   "order": [
     "Login",
     "Logout",
@@ -56,7 +59,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-11T16:41:25.810Z",
+    "time": "2015-12-11T16:57:08.441Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

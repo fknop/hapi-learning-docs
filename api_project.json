@@ -42,6 +42,7 @@
     "GetUserTags",
     "GetUserCourses",
     "AddTagsUser",
+    "PostUser",
     "UserSubscribe",
     "UserUnsubscribe",
     "PatchUser",
@@ -55,7 +56,7 @@
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-11T16:38:46.298Z",
+    "time": "2015-12-11T16:41:25.810Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

@@ -2239,7 +2239,7 @@
   },
   {
     "type": "get",
-    "url": "/courses",
+    "url": "/news",
     "title": "Get all news",
     "name": "GetManyNews",
     "group": "News",
@@ -2293,7 +2293,7 @@
   },
   {
     "type": "get",
-    "url": "/courses/:id",
+    "url": "/news/:id",
     "title": "Get a news",
     "name": "GetOneNews",
     "group": "News",
@@ -2367,7 +2367,7 @@
   },
   {
     "type": "post",
-    "url": "/courses",
+    "url": "/news",
     "title": "Post a news",
     "name": "PostNews",
     "group": "News",
@@ -2425,6 +2425,289 @@
     },
     "filename": "app/controllers/news.js",
     "groupTitle": "News"
+  },
+  {
+    "type": "delete",
+    "url": "/roles",
+    "title": "Delete a role",
+    "name": "DeleteRole",
+    "group": "Roles",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>the role name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/role.js",
+    "groupTitle": "Roles"
+  },
+  {
+    "type": "get",
+    "url": "/roles/:name",
+    "title": "Get a role",
+    "name": "GetRole",
+    "group": "Roles",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The role name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The role.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Role not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/role.js",
+    "groupTitle": "Roles"
+  },
+  {
+    "type": "get",
+    "url": "/roles",
+    "title": "Get all roles",
+    "name": "GetRoles",
+    "group": "Roles",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>All the roles.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/role.js",
+    "groupTitle": "Roles"
+  },
+  {
+    "type": "post",
+    "url": "/roles",
+    "title": "Post a role",
+    "name": "PostRole",
+    "group": "Roles",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "201",
+            "description": "<p>The created role.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Conflict - role name already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/role.js",
+    "groupTitle": "Roles"
   },
   {
     "type": "delete",

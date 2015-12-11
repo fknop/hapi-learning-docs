@@ -28,7 +28,10 @@ define({
     "GetTags",
     "GetTag",
     "PostTag",
-    "DeleteTag"
+    "DeleteTag",
+    "GetManyNews",
+    "GetOneNews",
+    "PostNews"
   ],
   "name": "hapi-learning",
   "version": "1.0.0",
@@ -37,7 +40,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-11T11:29:45.863Z",
+    "time": "2015-12-11T11:47:20.186Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

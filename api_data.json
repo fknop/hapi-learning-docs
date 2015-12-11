@@ -2238,6 +2238,195 @@
     "groupTitle": "Courses"
   },
   {
+    "type": "get",
+    "url": "/courses",
+    "title": "Get all news",
+    "name": "GetManyNews",
+    "group": "News",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of news ordered by descendant date.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/news.js",
+    "groupTitle": "News"
+  },
+  {
+    "type": "get",
+    "url": "/courses/:id",
+    "title": "Get a news",
+    "name": "GetOneNews",
+    "group": "News",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The news id.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The news.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>News not found.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/news.js",
+    "groupTitle": "News"
+  },
+  {
+    "type": "post",
+    "url": "/courses",
+    "title": "Post a news",
+    "name": "PostNews",
+    "group": "News",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and teachers."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "201",
+            "description": "<p>The created news.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/news.js",
+    "groupTitle": "News"
+  },
+  {
     "type": "delete",
     "url": "/tags",
     "title": "Delete a tag",

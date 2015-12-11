@@ -3145,7 +3145,7 @@ define({ "api": [
   {
     "type": "delete",
     "url": "/users/:username",
-    "title": "Add user's tags",
+    "title": "Delete user",
     "name": "DeleteUser",
     "group": "Users",
     "version": "1.0.0",
@@ -3345,6 +3345,168 @@ define({ "api": [
             "optional": false,
             "field": "200",
             "description": "<p>The user.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/:username/courses",
+    "title": "Get user subscribed courses.",
+    "name": "GetUserCourses",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of courses.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/:username/tags",
+    "title": "Get user tags",
+    "name": "GetUserTags",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of tag.</p> "
           }
         ]
       }
@@ -3600,8 +3762,15 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "409",
-            "description": "<p>Conflict User's username or email already exists.</p> "
+            "description": "<p>User's username or email already exists.</p> "
           }
         ]
       }
@@ -3738,7 +3907,7 @@ define({ "api": [
             "type": "<p>json</p> ",
             "optional": false,
             "field": "409",
-            "description": "<p>Conflict User's username or email already exists.</p> "
+            "description": "<p>User's username or email already exists.</p> "
           }
         ]
       }
@@ -3869,8 +4038,212 @@ define({ "api": [
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
             "field": "409",
-            "description": "<p>Conflict User's username or email already exists.</p> "
+            "description": "<p>User's username or email already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "post",
+    "url": "/users/:username/subscribe/:crsId",
+    "title": "Subscribe to course",
+    "name": "UserSubscribe",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and concerned user."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          },
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "crsId",
+            "description": "<p>The course code.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The subscribed course.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found or course not found.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Already subscribed.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "post",
+    "url": "/users/:username/subscribe/:crsId",
+    "title": "Unsubscribe to course",
+    "name": "UserUnsubscribe",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and concerned user."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          },
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "crsId",
+            "description": "<p>The course code.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The unsubscribed course.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found or course not found (or already unsubscribed).</p> "
           }
         ]
       }

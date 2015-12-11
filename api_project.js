@@ -35,7 +35,18 @@ define({
     "GetRoles",
     "GetRole",
     "PostRole",
-    "DeleteRole"
+    "DeleteRole",
+    "GetUsers",
+    "GetUser",
+    "GetTeachers",
+    "GetUserTags",
+    "GetUserCourses",
+    "AddTagsUser",
+    "UserSubscribe",
+    "UserUnsubscribe",
+    "PatchUser",
+    "PutUser",
+    "DeleteUser"
   ],
   "name": "hapi-learning",
   "version": "1.0.0",
@@ -44,7 +55,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-12-11T16:02:48.079Z",
+    "time": "2015-12-11T16:38:46.298Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

@@ -311,7 +311,7 @@ define({ "api": [
   {
     "type": "patch",
     "url": "/me",
-    "title": "Path current user informations",
+    "title": "Update current user informations",
     "name": "PatchMe",
     "group": "Auth",
     "version": "1.0.0",

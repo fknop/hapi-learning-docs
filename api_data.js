@@ -18,7 +18,7 @@ define({ "api": [
         "name": "all users."
       }
     ],
-    "description": "<p>You have to provide the username OR the email.</p> ",
+    "description": "<p>You have to provide the username OR the email. <br/> After the login, you have to provide the private token returned by the login in EVERY request in the Authorization header.</p> ",
     "parameter": {
       "fields": {
         "payload": [
@@ -135,13 +135,274 @@ define({ "api": [
             "optional": false,
             "field": "401",
             "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "get",
+    "url": "/me",
+    "title": "Get current user informations",
+    "name": "Me",
+    "group": "Auth",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/me -H \"Authorization: private_token\"",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "200",
+            "description": "<p>Connected user informations.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "get",
+    "url": "/me/courses",
+    "title": "Subscribed current user courses",
+    "name": "MeCourses",
+    "group": "Auth",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "200",
+            "description": "<p>All the subscribed current user courses.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "get",
+    "url": "/me/news",
+    "title": "Subscribed current user courses news",
+    "name": "MeCoursesNews",
+    "group": "Auth",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "200",
+            "description": "<p>All the subscribed current user courses news.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "patch",
+    "url": "/me",
+    "title": "Path current user informations",
+    "name": "PatchMe",
+    "group": "Auth",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "payload": [
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The new password.</p> "
+          },
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The new email.</p> "
+          },
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>The new first name.</p> "
+          },
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>The new last name.</p> "
+          },
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>The new phone number.</p> "
+          },
+          {
+            "group": "payload",
+            "optional": false,
+            "field": "notify",
+            "description": "<p>The new value of notify (news).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
           },
           {
             "group": "Error 4xx",
             "type": "<p>json</p> ",
             "optional": false,
-            "field": "403",
-            "description": "<p>Forbidden - insufficient permissions.</p> "
+            "field": "409",
+            "description": "<p>Conflict with the new username or email.</p> "
           }
         ]
       }

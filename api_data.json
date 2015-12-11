@@ -2429,7 +2429,7 @@
   {
     "type": "delete",
     "url": "/roles",
-    "title": "Delete a role",
+    "title": "Delete role",
     "name": "DeleteRole",
     "group": "Roles",
     "version": "1.0.0",
@@ -2502,7 +2502,7 @@
   {
     "type": "get",
     "url": "/roles/:name",
-    "title": "Get a role",
+    "title": "Get role",
     "name": "GetRole",
     "group": "Roles",
     "version": "1.0.0",
@@ -2644,7 +2644,7 @@
   {
     "type": "post",
     "url": "/roles",
-    "title": "Post a role",
+    "title": "Post role",
     "name": "PostRole",
     "group": "Roles",
     "version": "1.0.0",

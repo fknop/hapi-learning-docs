@@ -205,7 +205,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/me/courses",
-    "title": "Subscribed current user courses",
+    "title": "Get current user's subscribed courses",
     "name": "MeCourses",
     "group": "Auth",
     "version": "1.0.0",
@@ -258,7 +258,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/me/news",
-    "title": "Subscribed current user courses news",
+    "title": "Get current user's subscribed courses news",
     "name": "MeCoursesNews",
     "group": "Auth",
     "version": "1.0.0",
@@ -1627,6 +1627,22 @@ define({ "api": [
           },
           {
             "group": "query",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "limit",
+            "defaultValue": "25",
+            "description": "<p>Limit of results per page.</p> "
+          },
+          {
+            "group": "query",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "page",
+            "defaultValue": "1",
+            "description": "<p>Page number.</p> "
+          },
+          {
+            "group": "query",
             "type": "<p>Boolean</p> ",
             "optional": true,
             "field": "pagination",
@@ -2492,6 +2508,13 @@ define({ "api": [
             "optional": false,
             "field": "403",
             "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Role not found.</p> "
           }
         ]
       }
@@ -3020,5 +3043,839 @@ define({ "api": [
     },
     "filename": "app/controllers/tag.js",
     "groupTitle": "Tags"
+  },
+  {
+    "type": "post",
+    "url": "/users/:username/tags",
+    "title": "Add user's tags",
+    "name": "AddTagsUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and concerned user."
+      }
+    ],
+    "description": "<p>Non existing tags will be ignored.</p> ",
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ],
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String[]</p> ",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>An array of tags name.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The updated user.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "delete",
+    "url": "/users/:username",
+    "title": "Add user's tags",
+    "name": "DeleteUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/teachers",
+    "title": "Get all teachers",
+    "name": "GetTeachers",
+    "group": "Users",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/teachers",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of teachers.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/:username",
+    "title": "Get one user",
+    "name": "GetUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/users/XYZ",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The user.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users",
+    "title": "Get all users",
+    "name": "GetUsers",
+    "group": "Users",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/users",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "query": [
+          {
+            "group": "query",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "limit",
+            "defaultValue": "25",
+            "description": "<p>Number of results per page.</p> "
+          },
+          {
+            "group": "query",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "page",
+            "defaultValue": "1",
+            "description": "<p>Page number.</p> "
+          },
+          {
+            "group": "query",
+            "type": "<p>Boolean</p> ",
+            "optional": true,
+            "field": "pagination",
+            "defaultValue": "true",
+            "description": "<p>Enable / disable pagination.</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The users with a meta object if pagination is true.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "patch",
+    "url": "/users/:username",
+    "title": "Update user (PATCH)",
+    "name": "PatchUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and concerned user."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ],
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "password",
+            "description": "<p>The user's password.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "email",
+            "description": "<p>The user's email.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "firstName",
+            "description": "<p>The user's first name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "lastName",
+            "description": "<p>The user's last name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "phoneNumber",
+            "description": "<p>The user's phone number.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>Boolean</p> ",
+            "optional": true,
+            "field": "notify",
+            "description": "<p>True if the user wants to be notified (news).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Conflict User's username or email already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "post",
+    "url": "/users",
+    "title": "Post user",
+    "name": "PostUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin."
+      }
+    ],
+    "description": "<p>It is possible to provide an array of user instead of just one object, in that case, the return value will be the count of user created.</p> ",
+    "parameter": {
+      "fields": {
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The user's password.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The user's email.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "firstName",
+            "description": "<p>The user's first name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "lastName",
+            "description": "<p>The user's last name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "phoneNumber",
+            "description": "<p>The user's phone number.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>Number</p> ",
+            "allowedValues": [
+              "1",
+              "2",
+              "3"
+            ],
+            "optional": true,
+            "field": "role_id",
+            "defaultValue": "3",
+            "description": "<p>The user's role id (1 = admin, 2 = teacher, 3 = user).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "201",
+            "description": "<p>The created user (if one), the count of users created (if many).</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Conflict User's username or email already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "put",
+    "url": "/users/:username",
+    "title": "Update user (PUT)",
+    "name": "PutUser",
+    "group": "Users",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "admin and concerned user."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The user's username.</p> "
+          }
+        ],
+        "payload": [
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The user's password.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The user's email.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>The user's first name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>The user's last name.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>The user's phone number.</p> "
+          },
+          {
+            "group": "payload",
+            "type": "<p>Boolean</p> ",
+            "optional": false,
+            "field": "notify",
+            "description": "<p>True if the user wants to be notified (news).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "204",
+            "description": "<p>No content.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Forbidden - insufficient permissions.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "409",
+            "description": "<p>Conflict User's username or email already exists.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/user.js",
+    "groupTitle": "Users"
   }
 ] });

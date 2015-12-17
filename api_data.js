@@ -1464,6 +1464,182 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/courses/:id/tags",
+    "title": "Get all the tags related to a course",
+    "name": "GetCourseTags",
+    "group": "Courses",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/courses/XYZ/tags",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the course (code).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of tags.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Course not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/course.js",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "get",
+    "url": "/courses/:id/teachers",
+    "title": "Get all the teachers giving a course",
+    "name": "GetCourseTeachers",
+    "group": "Courses",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/courses/XYZ/teachers",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the course (code).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>An array of users (teachers).</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Course not found.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/course.js",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "get",
     "url": "/courses/:id/documents/:path",
     "title": "Get the list of documents in a directory",
     "name": "GetCourseTree",
@@ -1694,6 +1870,94 @@ define({ "api": [
             "optional": false,
             "field": "401",
             "description": "<p>Invalid token or token expired.</p> "
+          }
+        ]
+      }
+    },
+    "filename": "app/controllers/course.js",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "get",
+    "url": "/courses/:id/news",
+    "title": "Get every news related to a course",
+    "name": "GetNews",
+    "group": "Courses",
+    "version": "1.0.0",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://localhost/courses/XYZ/news",
+        "type": "curl"
+      }
+    ],
+    "permission": [
+      {
+        "name": "all users."
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "path": [
+          {
+            "group": "path",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the course (code).</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The user's private token.</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "200",
+            "description": "<p>The news array.</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Validation error.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Invalid token or token expired.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "type": "<p>json</p> ",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Course not found.</p> "
           }
         ]
       }
@@ -3562,6 +3826,15 @@ define({ "api": [
     ],
     "parameter": {
       "fields": {
+        "search": [
+          {
+            "group": "search",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "A",
+            "description": "<p>search field (username, last name, first name, email).</p> "
+          }
+        ],
         "query": [
           {
             "group": "query",
